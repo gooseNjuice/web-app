@@ -145,7 +145,7 @@ router.post("/followed_events", (req, res) => {
 router.post("/follow_event", async (req, res) => {
   const { spotify_uid, event_id } = req.body;
   if (event_id === undefined)
-    res.status(500).send({
+    res.status(403).send({
       message: "event_id must not be undefined."
     });
 
@@ -161,7 +161,7 @@ router.post("/follow_event", async (req, res) => {
     const saveFollowedEvent = await newFollowedEvent.save();
     res.status(201).send(saveFollowedEvent);
   } catch (error) {
-    res.status(500).send({
+    res.status(405).send({
       error,
       message: "An error occurred or the user has already followed this event."
     });
@@ -170,9 +170,9 @@ router.post("/follow_event", async (req, res) => {
 
 router.post("/unfollow_event", async (req, res) => {
   const { spotify_uid, event_id } = req.body;
+  const identifier = spotify_uid + "_" + event_id;
   const unfollowedEvent = await FollowedEvents.deleteOne({
-    spotify_uid,
-    event_id
+    identifier
   });
 
   if (unfollowedEvent.deletedCount === 0)

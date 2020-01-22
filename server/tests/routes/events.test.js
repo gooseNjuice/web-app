@@ -20,7 +20,6 @@ describe("Should test / Route", () => {
       .expect(200)
       .end((err, res) => {
         if (err) throw err;
-        console.log(res.body);
         done();
       });
   });
@@ -100,7 +99,6 @@ describe("Should test /my_events route", () => {
       .expect(200)
       .end((err, res) => {
         if (err) throw err;
-        console.log(res.body);
         done();
       });
   });
@@ -121,3 +119,40 @@ describe("Should test /my_events route", () => {
   //     });
   // });
 });
+
+// describe("Should test /follow_event and /unfollow_event route", () => {
+//   it.only("Should POST to /follow_event user id and event id to recieve 200 and follow identifier", done => {
+//     const eventID = "5dfc32b152af8b4116985139";
+//     request(server)
+//       .post("/events/follow_event")
+//       .send({
+//         spotify_uid: testUserID,
+//         event_id: eventID
+//       })
+//       .set("Accept", "application/json")
+//       .expect(201)
+//       .end((err, res) => {
+//         if (err) throw err;
+//         done();
+//       });
+//   });
+
+//   it.only("Should POST to /unfollow_event user id and event id to recieve 200", done => {
+//     const eventID = "5dfc32b152af8b4116985139";
+//     request(server)
+//       .post("/events/unfollow_event")
+//       .send({
+//         spotify_uid: testUserID,
+//         event_id: eventID
+//       })
+//       .set("Accept", "application/json")
+//       .expect(200)
+//       .end((err, res) => {
+//         console.log(res.body);
+
+//         if (err) throw err;
+//         console.log(res.body);
+//         done();
+//       });
+//   });
+// });
